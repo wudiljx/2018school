@@ -4,8 +4,38 @@
     <meta charset="utf-8">
     <title>Array</title>
     <script type="text/javascript" src="../js/learn.js"></script>
+    <script type="text/javascript" src="../js/node_modules/vue/dist/vue.min.js"></script>
   </head>
   <body>
-
+    <div id="app">
+      <h1>{{title}}</h1>
+      <div class="">
+        {{a}}
+      </div>
+      <button type="button" @click="jia" name="button">点击+1</button>
+      <button type="button" @click="jian" name="button">点击-1</button>
+    </div>
   </body>
+  <script>
+    new Vue({
+      el:"#app",
+      data:{
+        title:"Hello Vue",
+        a:1
+      },
+      methods:{
+        jia : function(){
+          this.a ++
+        },
+        jian : function(){
+          this.a --
+        }
+      },
+      watch:{
+        "a":function(val,oldVal){
+          console.log(this.a)
+        }
+      }
+    })
+  </script>
 </html>
