@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>JS打印九九乘法表</title>
+    <style media="screen">
+      /* 简单给整个table加点样式 */
+      table{
+        border-collapse: collapse;
+      }
+      table tr{
+        border: 1px solid #666;
+      }
+      table tr th{
+        border: 1px solid #666;
+        color: #999;
+        padding:10px;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+    // 创建table
+    document.write("<table>");
+      // 打印九九乘法表
+      for(var x = 1;x <= 9;x++){
+        // 创建tr
+        document.write("<tr>");
+        for(var y = 1;y <= x;y++){
+          // 公式里创建th
+          document.write('<th>' + x + '*' + y + '=' + (x * y) + '</th>')
+        }
+        // 闭合tr
+        document.write("</tr>");
+      }
+    // 闭合table
+    document.write("</table>")
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>图片懒加载</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/jquery.lazyload.min.js">
+
+    </script>
+  </head>
+  <body>
+    <img class="lazy" src="../image/timg.jpg" data-src="../image/bmw_m1_hood.jpg" width="640" height="480">
+
+
+
+    <script type="text/javascript">
+      //判断元素是否出现在了可视范围之内
+      function isVisible($node){
+        var winH = $(window).height(),                //获取当前屏幕的高度
+            scrollTop = $(window).scrollTop(),        //获取当前滚动条的位置
+            offSetTop = $(window).offSet().top;       //获取当前位移的高度
+        //判断
+        //如果当前位移的高度小于屏幕的高度和滚动条之和
+        if(offSetTop < (winH + scrollTop)){
+          return true;
+        }else{
+          return false;
+        }
+      }
+      // 监听浏览器每次滚动时，元素是否出现在窗口可视范围之内
+      $(window).on('scroll',function(){
+        if(isVisible($node)){
+          console.log(true);
+        }else{
+          console.log("还有元素出现" + false);
+        }
+      })
+
+      //让元素只在第一次被检查到时打印true，之后不在打印
+      var hasShowed = false;
+      $(window).on('sroll',function(){
+        if(hasShowed){
+          return;
+        }else if(isVisible($node)){
+          hasShowed = !hasShowed;
+          console.log(true);
+        }
+      })
+      // 找到类名为lazy的图片，为其设置预加载
+
+      $("img.lazy").lazyload({
+        threshold:200,      // 设置threshold为200使图片在距离屏幕可见区域下方200像素时就开始加载
+        event:"click"       // 事件触发加载，默认的是scoll，即向下滚动时至图片出现在屏幕可视区域图片才能加载，这里是用户点击才能加载
+      });
+
+
+    </script>
+  </body>
+</html>
